@@ -1,36 +1,32 @@
-from brainwise import *
+from classes import *
 
-#Our little demo function
-def convertkilotopounds(g):
-    #g is a tuple of the matched values, in this case it would be whatever number you put in:
-    #convert * kilograms to pounds
-    #The value returned in this function is the second value in the return object of BrainWise
-    return int(g[0]) * 2.20462
+#EXAMPLE FUNCTIONS_______________________________________
+def convert(args, rule):
     
+    #args[0][0] is the first match in the groups argument
+    conversion_table = {
+        "Poundstokilograms": args[0][0] * 0.453592  
+    }
     
-#First define a grammar ditionary object
-#The grammar object consists of a grammar value,
-#and grammar pattern
+    return conversion_table[rule]
+    
+def answerQuestion(args):
+    dt = DeepThought()
+    #args[1] is the whole input
+    return dt.answer(args[1])
+#________________________________________________________
+
 grammar = {
-    "NUMBER" : "([0-9\.\^\*]*)"
+    
 }
 
-#Now define a rules object
-#The rules object consists of a regex pattern,
-#the name of the interpretation, and
-#a call back lambda function
-
-#*Note: grammar value must be wrapped in /
-#Example: /NUMBER/
-#Example: /ADDRESS/
+#important note: The paramteres passed to the function is a tuple, 
+#that contains the match groups, and the whole input
 rules = [
-    ["convert /NUMBER/ kilograms to pounds", "conversion", lambda g: convertkilotopounds(g)] 
+    ["([Ww]hat|[Ww]hy|[Ww]hen|[Ww]ho|[Hh]ow|[Dd]id|[Ww]ill)(.*)", "question", lambda args: answerQuestion(args)],
+    ["[Cc]onvert \d pounds to kilograms", "conversion", lambda args: convert(args, "Poundstokilograms")]
 ]
 
-#Tell BrainWise to learn the rules and grammar
 bw = BrainWise(rules, grammar)
 
-#Have BrainWise do all of the hard work
-#It will return a tuple that looks like:
-#[conversion name, return value from the call back function]
-print bw.interpret("convert 6 kilograms to pounds")
+print bw.interpret("Who killed abraham lincoln?")

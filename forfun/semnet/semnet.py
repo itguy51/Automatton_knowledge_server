@@ -6,8 +6,8 @@ class Entity:
 		self.mObjects = {}
 		self.mAgents = {}
 
-	def __str__(self):
-		return self.id
+    def __str__(self):
+        return self.id
 
 	def objects(self,relation):
 		try: ans = self.mObjects[relation]
