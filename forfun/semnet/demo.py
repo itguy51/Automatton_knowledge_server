@@ -11,10 +11,19 @@ rules = (
     ("e\>(.*)", lambda g: addEntity(g)),
     ("r\>(.*)", lambda g: addRelation(g)),
     ("(.*)\>(.*)\>(.*)", lambda g: addFact(g)),
-    ("([a-zA-Z\_\-]*)\((.*)\, (.*)\)", lambda g: isTrue(g))
+    ("([a-zA-Z\_\-]*)\((.*)\, (.*)\)", lambda g: isTrue(g)),
+    ("objects\((.*)\, (.*)\)", lambda g: objects(g)),
+    ("dump", lambda g: dump(g))
 )
 
 #Declare some functions
+def dump(g):
+    print entities
+    print relations
+
+def objects(g):
+    print entities[g[0]].objects(relations[g[1]])
+
 def isTrue(g):
     output = relations[g[0]](entities[g[1]], entities[g[2]])
     print 'true' if output > 0 else 'false'

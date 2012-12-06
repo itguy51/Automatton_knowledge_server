@@ -1,11 +1,12 @@
-# Automatton Knowledge Server
+Automatton Knowledge Server
+==========================
 
-This is not production, and only consists of the BrainWise, and DeepThought module right now. It also
-has a little semantic network under the forfun/ directory
+## About
 
-The BrainWise module is rudimentary and is not finished
-The DeepThought module is also rudimentary and not finished
+The automatton knowledge server is a question answering system written in python with simplicity and speed in mind. This is not complete, and probably never will be.
+The source includes basic classes for question answering, and interpretation. It also includes a basic HTTP server to use as API access to the question answering.
 
-# Important Notice: Everything right now is a concept
+## Install
 
-BeautifulSoup4 needs to be installed on your system in order for this to work properly
+The automatton knowledge server requires python, numpy, and BeautifulSoup4. After downloading the source, just open and run the server.py file, and you'll be set to go.
+

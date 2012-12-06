@@ -1,15 +1,15 @@
 # Semantic Network stuff
 
 class Entity:
-    def __init__(self,id):
+    def __init__(self, id):
 		self.id = id
 		self.mObjects = {}
 		self.mAgents = {}
 
-    def __str__(self):
+	def __str__(self):
         return self.id
 
-	def objects(self,relation):
+	def objects(self, relation):
 		try: ans = self.mObjects[relation]
 		except: ans = []
 		if relation.transitive:
